@@ -36,6 +36,10 @@ header{
     height: 10vh;
     display: flex;
 }
+h1{
+    font-weight: 800;
+    font-size: 2.4rem;
+}
 .headerright , .headerleft{
     width: 50%;
     display: flex;
@@ -44,12 +48,13 @@ header{
 .headerleft{
     justify-content: end;
 }
-.headerleft button{
+.headerleft button, .headerleft select{
     width: 13%;
     height: 25%;
     border-radius: .3rem;
     border: 1px solid black;
     font-weight: 500;
+    margin-left: .4rem;
 }
 
 /* MAIN */
