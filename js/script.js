@@ -23,6 +23,7 @@ console.log(userDifficolta);
 
 
 
+
 //recupero il bottone in html
 const btnPlay = document.getElementById("play");
 console.log(btnPlay);
@@ -36,11 +37,19 @@ console.log(rowGame);
 const boxGame = document.querySelectorAll(".box");
 //quando clicco il bottone compare la griglia
 btnPlay.addEventListener("click" , function(){
+    const userChoice = userDifficolta.value;
+    console.log(userChoice);
     wrapperGame.classList.remove("none");
     wrapperGame.classList.add("active");
     rowGame.innerHTML = "";
-    //variabile contenente numero di caselle per gioco 
-    const gameBoxes = 100;
+    let gameBoxes ;
+    if(userChoice === "easy"){
+        gameBoxes = 100;
+    }else if(userChoice ==="medium"){
+        gameBoxes = 81;
+    }else if(userChoice ==="hard"){
+        gameBoxes = 49;
+    }
     //creo array che conterra le 100 caselle
     const arrayGame = [];
     while(arrayGame.length < gameBoxes){
@@ -60,6 +69,13 @@ btnPlay.addEventListener("click" , function(){
             rowGame.append(addBox);
             //aggiungo la classe css box
             addBox.classList.add("box");
+            if(userChoice === "easy"){
+                addBox.classList.add("easy");
+            }else if(userChoice ==="medium"){
+                addBox.classList.add("medium");
+            }else if(userChoice ==="hard"){
+                addBox.classList.add("hard");
+            }
             //per ogni elemento stampo anche il numeor 
             addBox.innerHTML = arrayGame[i];
             //se clicclo sulla cella stampo numero della casella e la coloro di azzurro 

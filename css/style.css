@@ -74,13 +74,23 @@ main{
     flex-wrap: wrap;
 }
 .box{
-   height: calc(100% / 10);
-   width: calc(100% /10);
    border: 1px solid black;
    display: flex;
    align-items: center;
    justify-content: center;
    cursor: pointer;
+}
+.easy{
+    height: calc(100% / 10);
+    width: calc(100% /10);
+}
+.medium{
+    height: calc(100% / 9);
+    width: calc(100% / 9);
+}
+.hard{
+    height: calc(100% / 7);
+    width: calc(100% / 7);
 }
 /* FOOTER */
 footer{
