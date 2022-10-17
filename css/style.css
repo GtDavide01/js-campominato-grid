@@ -22,6 +22,15 @@ body{
     justify-content: center;
     align-items: flex-end;
 }
+.active{
+    display: block;
+}
+.none{
+    display: none;
+}
+.color{
+    background-color: blue ;
+}
 /* HEADER */
 header{
     height: 10vh;
@@ -51,8 +60,8 @@ main{
     align-items: center;
 }
 .wrapperbox{
-    height: 700px;
-    width: 700px;
+    height: 500px;
+    width: 500px;
 }
 .row{
     height: 100%;
@@ -62,8 +71,11 @@ main{
 .box{
    height: calc(100% / 10);
    width: calc(100% /10);
-   background-color: lightblue;
    border: 1px solid black;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
 }
 /* FOOTER */
 footer{
