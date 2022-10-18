@@ -15,15 +15,10 @@
 // Proviamo sempre prima con dei console.log() per capire se stiamo ricevendo i dati giusti.
 // Le validazioni e i controlli possiamo farli anche in un secondo momento.
 
-
+//Elementi HTML 
 //recupero select in html
 const userDifficolta = document.getElementById("difficolta");
 console.log(userDifficolta);
-
-
-
-
-
 //recupero il bottone in html
 const btnPlay = document.getElementById("play");
 console.log(btnPlay);
@@ -35,8 +30,77 @@ const rowGame = document.querySelector(".row");
 console.log(rowGame);
 //recupero i box della griglia 
 const boxGame = document.querySelectorAll(".box");
+
 //quando clicco il bottone compare la griglia
-btnPlay.addEventListener("click" , function(){
+btnPlay.addEventListener("click" , createElement );
+
+
+
+
+
+
+
+
+
+
+
+//FUNZIONI
+/**
+ * funzione per inserire le numeri di celle all'array 
+ * @param {array } //array da incrementare 
+ * @param {numbercells} //numero di celle di gioco 
+ * @returns {arraypieno}//elemento array con lunghezza delle numero di celle 
+ */ function numberCell (array,numbercells){
+    for (let i=1 ; i<=numbercells ; i++){
+        array.push(i);
+    }
+}
+
+/**
+ * funzione per generare numeri random 
+ * @param {min} //numero minimo da generare 
+ * @param {max} //numero massimo da generare 
+ * @returns {number}//ritorna numero random da min a max 
+ */
+function randomNuber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+
+/**
+ * Funzione che stampa il numero di celle all'interno dela griglia e contiene cosa succede al click della cella
+ * @param {array} //array dove inserire le celle
+ * @param {choice} //scelta contenente numero di celle
+ * @returns {elementbox} //stampa celle 
+ */
+function createSquare (array , choice){
+    for ( let i=0 ; i<array.length ; i++ ){
+        //creo elemento div 
+        const addBox = document.createElement("div");
+        //lo collego alla row
+        rowGame.append(addBox);
+        //aggiungo la classe css box
+        addBox.classList.add("box");
+        if(choice === "easy"){
+            addBox.classList.add("easy");
+        }else if(choice ==="medium"){
+            addBox.classList.add("medium");
+        }else if(choice ==="hard"){
+            addBox.classList.add("hard");
+        }
+        //per ogni elemento stampo anche il numeor 
+        addBox.innerHTML = array[i];
+        //se clicclo sulla cella stampo numero della casella e la coloro di azzurro 
+        addBox.addEventListener("click",function(){
+            console.log(array[i]);
+            addBox.classList.add("color");
+        })
+}
+}
+
+//funzione che determina cosa succederà quando clicco il bottone 
+function createElement (){
     const userChoice = userDifficolta.value;
     console.log(userChoice);
     wrapperGame.classList.remove("none");
@@ -50,57 +114,10 @@ btnPlay.addEventListener("click" , function(){
     }else if(userChoice ==="hard"){
         gameBoxes = 49;
     }
-    //creo array che conterra le 100 caselle
+    //creo array 
     const arrayGame = [];
-    while(arrayGame.length < gameBoxes){
-        //variabile con numeri random 
-        const rndNumberArray = randomNuber(1, gameBoxes);
-        //Se l'array  non include il numero allora pusho altrimenti continua con la generazione di numeri 
-        if (!arrayGame.includes(rndNumberArray)){
-            arrayGame.push(rndNumberArray);
-        }
-    }
-    console.log(arrayGame);
-    //per ogni elemento dell'array creo una classe box 
-        for ( let i=0 ; i<arrayGame.length ; i++ ){
-            //creo elemento div 
-            const addBox = document.createElement("div");
-            //lo collego alla row
-            rowGame.append(addBox);
-            //aggiungo la classe css box
-            addBox.classList.add("box");
-            if(userChoice === "easy"){
-                addBox.classList.add("easy");
-            }else if(userChoice ==="medium"){
-                addBox.classList.add("medium");
-            }else if(userChoice ==="hard"){
-                addBox.classList.add("hard");
-            }
-            //per ogni elemento stampo anche il numeor 
-            addBox.innerHTML = arrayGame[i];
-            //se clicclo sulla cella stampo numero della casella e la coloro di azzurro 
-            addBox.addEventListener("click",function(){
-                console.log(arrayGame[i]);
-                addBox.classList.add("color");
-            })
-    }
-
-
-    })
-
-
-
-
-
-
-
-
-
-
-
-
-//FUNZIONI 
-//funzione per generare numeri random 
-function randomNuber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    //richiamo funzione per determinare il numero di celle 
+    const arrayGameCell = numberCell (arrayGame , gameBoxes);
+    //richiamo  funzione che crea per ogni elemento dell'array creo una classe box 
+    const allElement =  createSquare (arrayGame , userChoice);
 }

@@ -67,6 +67,7 @@ main{
 .wrapperbox{
     height: 500px;
     width: 500px;
+    background-color: aliceblue;
 }
 .row{
     height: 100%;
